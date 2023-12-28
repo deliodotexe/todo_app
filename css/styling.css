@@ -1,0 +1,45 @@
+.w3-container {
+    padding: 20px 0;
+}
+
+.w3-bar {
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#input div{
+    display: flex;
+    align-content: center;
+}
+
+.w3-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.w3-table th, .w3-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.w3-table th {
+    background-color: #f2f2f2;
+}
+
+@media only screen and (max-width: 600px) {
+    .w3-container {
+        height: fit-content;
+    }
+
+    .w3-bar {
+        height: fit-content;
+    }
+
+    .w3-table tr {
+        margin-bottom: 10px;
+    }
+}
