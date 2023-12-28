@@ -11,6 +11,7 @@
         <div class="w3-bar w3-black">
             <a href="#info" class="w3-bar-item w3-button">Informationen</a>
             <a href="#input" class="w3-bar-item w3-button">Task hinzufügen</a>
+            <a href="#cookieUsername" class="w3-bar-item w3-button">Nutzername ändern</a>
             <a href="#output" class="w3-bar-item w3-button">offene Tasks</a>
         </div>
 
@@ -31,21 +32,29 @@
         <div id="input" class="w3-container w3-padding-large">
             <h3>Task hinzufügen</h3>
             <div class="w3-container w3-row-padding">
-                <div class="w3-quarter">
-                    <label for="dueDate">Until:</label>
-                    <input type="date" id="dueDate" class="w3-input w3-border">
-                </div>
-                <div class="w3-quarter">
-                    <label for="taskName">Task Name:</label>
-                    <input type="text" id="taskName" placeholder="Name" value="" class="w3-input w3-border">
-                </div>
-                <div class="w3-quarter">
-                    <label for="taskDesc">Beschreibung:</label>
-                    <input type="text" id="taskDesc" placeholder="Beschreibung" value="" class="w3-input w3-border">
-                </div>
-                <button class="w3-quarter w3-button w3-border">Submit</button> <!--TODO: Funktionalität-->
+                <label for="dueDate">Until:</label>
+                <input type="date" id="dueDate" class="w3-input w3-border">
+
+                <label for="taskName">Task Name:</label>
+                <input type="text" id="taskName" placeholder="Name" value="" class="w3-input w3-border">
+
+                <label for="taskDesc">Beschreibung:</label>
+                <input type="text" id="taskDesc" placeholder="Beschreibung" value="" class="w3-input w3-border">
+                <button class="w3-quarter w3-button w3-border">Senden</button> <!--TODO: Funktionalität-->
             </div>                
             <p> {{ errorOutput }}</p>
+        </div>
+
+        <!--Cookie Aufgabe-->
+        <div id="cookieUsername" class="w3-container w3-padding-large">
+            <h3>Nutzername Ändern</h3>
+            <div class="w3-container w3-row-padding">
+                <div class="w3-threequarter">
+                    <label for="username">Name:</label>
+                    <input type="text" id="username" class="w3-input w3-border">
+                </div>
+                <button class="w3-quarter w3-button w3-border">Senden</button> <!--TODO: Funktionalität-->
+            </div>                
         </div>
 
         <!--Ausgabebereich-->

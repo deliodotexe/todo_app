@@ -1,3 +1,7 @@
+body > * {
+    border-top: 1px solid #000;
+}
+
 .w3-container {
     padding: 20px 0;
 }
@@ -12,6 +16,23 @@
 #input div{
     display: flex;
     align-content: center;
+}
+
+#input div > * {
+    margin-right: 5px;
+}
+
+#cookieUsername div{
+    display: flex;
+    align-content: center;
+}
+
+#cookieUsername div > *{
+    margin-right: 5px;
+}
+
+#content {
+    align-items: center;
 }
 
 .w3-table {
