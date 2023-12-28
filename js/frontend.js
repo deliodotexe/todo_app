@@ -33,6 +33,11 @@ var vue = createApp({
 
             xhr.open('GET', 'backend.php?', true);
             xhr.send();
+        },
+        saveNameInCookie(){
+            var username = document.getElementById('username').value;
+            document.cookie = 'username=' + encodeURIComponent(username) + '; expires=Fri, 31 Dec 2024 23:59:59 GMT; path=/';
+            document.getElementById('username').value = "";
         }
 
     },
