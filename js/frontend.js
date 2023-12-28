@@ -1,4 +1,5 @@
-import { createApp } from 'https://cdn.jsdelivr.net/npm/vue/dist/vue.global.js'
+import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
+
 
 var vue = createApp({
     data(){
@@ -9,7 +10,10 @@ var vue = createApp({
     },
     methods: {
         fetchData(){ //Fetches Table of Tasks from Server
-            let xhr = new XMLHttpRequest();
+
+            console.info("fetching data");
+
+            let xhr = new XMLHttpRequest();            
 
             xhr.onerror = function(){ //Handling Errors in communication
                 vue.errorOutput = "An Error has occured: " + xhr.status;
@@ -20,7 +24,6 @@ var vue = createApp({
             }
 
             xhr.onload = function(){
-                //TODO: what to do once i get data from server.
                 if(xhr.status === 200) {
                     vue.tasks = JSON.parse(xhr.responseText);
                 } else {
@@ -34,8 +37,9 @@ var vue = createApp({
 
     },
     mounted: function(){
-        this.fetchData()
+        this.fetchData();
         //this todo when loading the webpage
+        console.info("frontend loaded") //why is it not loading?
     }
 
 }).mount('#app')

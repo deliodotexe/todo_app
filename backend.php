@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         while($row = mysqli_fetch_assoc($result)) {
             $tasks[] = $row;
         }
-        json_encode($tasks);
+        echo json_encode($tasks);
     }
     mysqli_close($conn)
 }
