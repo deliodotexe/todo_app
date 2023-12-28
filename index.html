@@ -3,51 +3,54 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body>
         <!--Navigation-->
-        <div>
-            <a href="#info">Informationen</a>
-            <a href="#input">Task hinzufügen</a>
-            <a href="#output">offene Tasks</a>
+        <div class="w3-bar w3-black">
+            <a href="#info" class="w3-bar-item w3-button">Informationen</a>
+            <a href="#input" class="w3-bar-item w3-button">Task hinzufügen</a>
+            <a href="#output" class="w3-bar-item w3-button">offene Tasks</a>
         </div>
 
         <!--Informationsabschnitt-->
-        <div id ="info">
+        <div id ="info" class="w3-container w3-padding-large">
             <h3>Informationen</h3>
-            <div>
-                <p>
+            <div class="w3-container">
+                <p class="w3-threequarter">
                     Dies ist eine simple demo einer Todo-Listen Application.
                     <!--TODO: Anleitung-->
                 </p>
-                <img src="img/stickynotes.png">
+                <img src="img/stickynotes.png" class="w3-quarter">
             </div>
 
         </div>
 
         <!--Eingabebereich-->
-        <div id="input">
+        <div id="input" class="w3-container w3-padding-large">
             <h3>Task hinzufügen</h3>
-                <div>
+            <div class="w3-container w3-row-padding">
+                <div class="w3-quarter">
                     <label for="dueDate">Until:</label>
-                    <input type="date" id="dueDate">
+                    <input type="date" id="dueDate" class="w3-input w3-border">
                 </div>
-                <div>
+                <div class="w3-quarter">
                     <label for="taskName">Task Name:</label>
-                    <input type="text" id="taskName" placeholder="Name" value="">
+                    <input type="text" id="taskName" placeholder="Name" value="" class="w3-input w3-border">
                 </div>
-                <div>
+                <div class="w3-quarter">
                     <label for="taskDesc">Beschreibung:</label>
-                    <input type="text" id="taskDesc" placeholder="Beschreibung" value="">
+                    <input type="text" id="taskDesc" placeholder="Beschreibung" value="" class="w3-input w3-border">
                 </div>
-                <button>Submit</button> <!--TODO: Funktionalität-->
-                <p> {{ errorOutput }}</p>
+                <button class="w3-quarter w3-button w3-border">Submit</button> <!--TODO: Funktionalität-->
+            </div>                
+            <p> {{ errorOutput }}</p>
         </div>
 
         <!--Ausgabebereich-->
-        <div id="output">
+        <div id="output" class="w3-container w3-padding-large">
             <h3>offene Tasks</h3>
-            <table>
+            <table class="w3-table w3-bordered w3-striped w3-hoverable">
                 <!--Tabellen Legende-->
                 <tr>
                     <th>Fertig bis</th>
@@ -61,7 +64,7 @@
                     <td> {{ task.taskName  }}</td>
                     <td> {{ task.taskDesc  }}</td>
                     <td> {{ task.username  }}</td>
-                    <td><button>Abschliessen</button></td>
+                    <td><button>Abschliessen</button></td> <!--TODO: Funktionalität-->
             </table>
         </div>
     </body>
