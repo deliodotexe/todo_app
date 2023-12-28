@@ -1,4 +1,6 @@
-<?php?
+<?php
+
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //Handling Get request from FetchData
@@ -11,4 +13,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
 
->
+?>
