@@ -72,12 +72,13 @@
                     <th>Ersteller</th>
                     <th>Abschliessen</th>
                 </tr>
-                <tr v-for="(task, index) in tasks" :key="index"></tr>
+                <tr v-for="(task, index) in tasks" :key="index">
                     <td> {{ task.dueDate  }}</td>
                     <td> {{ task.taskName  }}</td>
                     <td> {{ task.taskDesc  }}</td>
                     <td> {{ task.username  }}</td>
                     <td><button>Abschliessen</button></td> <!--TODO: Funktionalität-->
+                </tr>
             </table>
         </div>
     </body>
