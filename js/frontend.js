@@ -22,12 +22,14 @@ var vue = createApp({
             xhr.onload = function(){
                 //TODO: what to do once i get data from server.
                 if(xhr.status === 200) {
-
+                    vue.tasks = JSON.parse(xhr.responseText);
                 } else {
                     vue.errorOutput = "Error fetching data: " + xhr.status;
                 }
             }
 
+            xhr.open('GET', 'backend.php?', true);
+            xhr.send();
         }
 
     },
