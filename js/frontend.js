@@ -23,8 +23,8 @@ var vue = createApp({
                 vue.errorOutput = "Server took too long to respond";
             }
 
-            xhr.onload = function(){
-                if(xhr.status === 200) {
+            xhr.onload = function(){ //handle successful transfer
+                if(xhr.status === 200) { //if successful, update table of tasks, else show error
                     vue.tasks = JSON.parse(xhr.responseText);
                 } else {
                     vue.errorOutput = "Error fetching data: " + xhr.status;
