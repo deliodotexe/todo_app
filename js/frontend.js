@@ -11,7 +11,7 @@ var vue = createApp({
     methods: {
         fetchData(){ //Fetches Table of Tasks from Server
 
-            console.info("fetching data");
+            //console.info("fetching data");
 
             let xhr = new XMLHttpRequest();            
 
@@ -41,7 +41,7 @@ var vue = createApp({
         },
         async submit(){
             //TODO: Validation 
-            console.log("sending Task")
+            //console.log("sending Task")
             let xhr = new XMLHttpRequest();
             xhr.onerror = function(){vue.errorOutputoutput = "An Error has occured";}
 
@@ -71,7 +71,7 @@ var vue = createApp({
             xhr.send(json);
         },
         async finishTask(task){
-            console.log("finishing Task");
+            //console.log("finishing Task");
 
             let xhr = new XMLHttpRequest();
             xhr.onerror = function(){vue.errorOutputoutput = "An Error has occured";}
@@ -86,7 +86,6 @@ var vue = createApp({
             xhr.open('POST', 'backend.php?finishTask=' + task.taskId, true);
             xhr.send();
         }
-
     },
     mounted: function(){
         this.fetchData();

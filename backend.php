@@ -26,12 +26,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //TODO: Validation
 
     if(isset($_GET['finishTask'])){
-        //TODO: Update DB so isDone is true
+        $taskId = intval($_GET['finishTask']);
+
+        $query = "UPDATE tasks SET isDone = TRUE WHERE taskId = ?";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, 'i', $taskId);
+
+        if(mysqli_stmt_execute($stmt)){
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['error' => "Error updating task: " . $conn->error]);
+        }
+
     } else {
-        //get values from json body and escape them to prevent sql injection
-        $dueDate = $conn->real_escape_string($data->dueDate);
-        $taskName = $conn->real_escape_string($data->taskName);
-        $taskDesc = $conn->real_escape_string($data->taskDesc);
+        //removed the additional escaping since i use prepare later.
+        $dueDate = $data->dueDate;
+        $taskName = $data->taskName;
+        $taskDesc = $data->taskDesc;
         
         //get username from cookie
         $username = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
