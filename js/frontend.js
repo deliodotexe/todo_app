@@ -158,9 +158,32 @@ var vue = createApp({
             } else {
                 ctx.fillStyle = '#ff0000';
             }
+
+            ctx.moveTo(0,0);
+            ctx.lineTo(canvas.width, 0);
+            ctx.stroke();
+            ctx.lineTo(canvas.width, canvas.height);
+            ctx.stroke();
+            ctx.lineTo(0, canvas.height);
+            ctx.stroke();
+            ctx.lineTo(0,0);
+            ctx.stroke();
+
+            var thirtyProcentBar = (canvas.width * 30) / 100;
+            var SeventyProcentBaar = (canvas.width * 70) / 100;
         
             // Draw filled bar
             ctx.fillRect(0, 0, barWidth, canvas.height); //2
+
+            ctx.moveTo(thirtyProcentBar, 0);
+            ctx.lineTo(thirtyProcentBar, canvas.height);
+            ctx.stroke();
+
+            ctx.moveTo(SeventyProcentBaar, 0);
+            ctx.lineTo(SeventyProcentBaar, canvas.height);
+            ctx.stroke();
+
+            
             // Add text in the middle of the canvas
             var text = 'Auslastung: ' + vue.workloadPercentage + '%';
             ctx.fillStyle = '#000'; // Set text color

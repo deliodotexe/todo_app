@@ -61,7 +61,6 @@ body > * {
 }
 
 #workLoadCanvas {
-    border: 1px solid #000;
     height: 25px;
     width: 100%;
 }
