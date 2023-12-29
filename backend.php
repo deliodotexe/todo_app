@@ -38,8 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
 
     } else {
-        //removed the additional escaping since i use prepare later.
-
         if(isset($data->dueDate, $data->taskName) && $data->dueDate !== "" && $data->taskName !== "") {
             $dueDate = $data->dueDate;
             $taskName = $data->taskName;

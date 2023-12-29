@@ -2,17 +2,40 @@ import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 
 
 var vue = createApp({
-    data(){
+    data(){ //data object to store everything global
         return {
             tasks: [],
-            errorOutput: {
+            formData:{
                 taskName: '',
                 dueDate: '',
+            },
+            errorOutput: {
                 addTask: '',
-                getTasks: ''
+                getTasks: '',
+                taskName: '',
+                dueDate: ''                
             },
             workloadPercentage: 0
         };
+    },
+    computed: { 
+        isTaskNameValid() {
+            return this.formData.taskName.trim() !== '';
+        },
+        isDueDateValid() {
+            return this.formData.dueDate.trim() !== '';
+        },
+        isFormValid() {
+            return this.isTaskNameValid && this.isDueDateValid;
+        }
+    },
+    watch: {
+        isTaskNameValid(newValue) {
+            this.errorOutput.taskName = newValue ? '' : 'Task Name darf nicht leer sein.';
+        },
+        isDueDateValid(newValue) {
+            this.errorOutput.dueDate = newValue ? '' : 'End Datum darf nicht leer sein.';
+        }
     },
     methods: {
         fetchData(){ //Fetches Table of Tasks from Server
@@ -22,11 +45,11 @@ var vue = createApp({
             let xhr = new XMLHttpRequest();            
 
             xhr.onerror = function(){ //Handling Errors in communication
-                vue.errorOutput = "Ein Fehler ist aufgetreten: " + xhr.status;
+                vue.errorOutput.getTasks = "Ein Fehler ist aufgetreten: " + xhr.status;
             }
 
             xhr.ontimeout = function(){ //timeout handling
-                vue.errorOutput = "Server brauchte zu lange zum antworten";
+                vue.errorOutput.getTask = "Server brauchte zu lange zum antworten";
             }
 
             xhr.onload = function(){ //handle successful transfer
@@ -34,7 +57,7 @@ var vue = createApp({
                     vue.tasks = JSON.parse(xhr.responseText);
                     vue.workloadPercentage = (vue.tasks.length / 16) * 100; //16 is the max amount of tasks i feel is too much
 
-                    vue.drawWorkLoadBar();
+                    vue.drawWorkLoadBar(); //update bar
                 } else {
                     vue.errorOutput.getTasks = "Fehler beim Datenabruf: " + xhr.status;
                 }
@@ -48,32 +71,18 @@ var vue = createApp({
             document.cookie = 'username=' + encodeURIComponent(username) + '; expires=Fri, 31 Dec 2024 23:59:59 GMT; path=/';
             document.getElementById('username').value = "";
         },
-        async submit(){
-            //TODO: Validation 
+        submit(){ 
             dueDate = document.getElementById('dueDate').value;
             taskName = document.getElementById('taskName').value;
-
-            var isValid = true;
 
             vue.errorOutput.taskName = '';
             vue.errorOutput.dueDate = '';
             vue.errorOutput.addTask = '';
             vue.errorOutput.getTask = '';
 
-            if(taskName.trim() === ""){
-                vue.errorOutput.taskName = "Task Name darf nicht leer sein"
-                isValid = false;
+            if (!this.isTaskNameValid || !this.isDueDateValid) {
+                return; 
             }
-
-            if(dueDate.trim() === ""){
-                vue.errorOutput.dueDate = "End Datum darf nicht leer sein."
-                isValid = false;
-            }
-
-            if(isValid === false){
-                return;
-            }
-
             //console.log("sending Task")
             let xhr = new XMLHttpRequest();
             xhr.onerror = function(){vue.errorOutput.addTask = "Ein Fehler ist aufgetreten";}
@@ -105,7 +114,7 @@ var vue = createApp({
             xhr.setRequestHeader('Content-Type', 'application/json')
             xhr.send(json);
         },
-        async finishTask(task){
+        finishTask(task){
             //console.log("finishing Task");
 
             vue.errorOutput.taskName = '';
