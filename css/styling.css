@@ -18,8 +18,12 @@ body > * {
     align-content: center;
 }
 
-#input div > * {
-    margin-right: 5px;
+#input div > input {
+    margin-right: 10px;
+}
+
+#input div > label {
+    margin: auto;
 }
 
 #cookieUsername div{
