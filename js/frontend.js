@@ -74,7 +74,6 @@ var vue = createApp({
     },
     mounted: function(){
         this.fetchData();
-        //this todo when loading the webpage
     }
 
 }).mount('#app')
