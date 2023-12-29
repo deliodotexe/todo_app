@@ -23,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     //decode Json
     $data = json_decode(file_get_contents("php://input"));
-    //TODO: Validation
 
     if(isset($_GET['finishTask'])){
         $taskId = intval($_GET['finishTask']);
@@ -40,30 +39,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     } else {
         //removed the additional escaping since i use prepare later.
-        $dueDate = $data->dueDate;
-        $taskName = $data->taskName;
-        $taskDesc = $data->taskDesc;
-        
-        //get username from cookie
-        $username = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
 
-        //prepare to prevent sql injection
-        $query = "INSERT INTO tasks (dueDate, taskname, taskDesc, username) VALUES (?, ?, ?, ?)";
-        $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, 'ssss', $dueDate, $taskName, $taskDesc, $username);
+        if(isset($data->dueDate, $data->taskName) && $data->dueDate !== "" && $data->taskName !== "") {
+            $dueDate = $data->dueDate;
+            $taskName = $data->taskName;
+            $taskDesc = $data->taskDesc;
+            
+            //get username from cookie
+            $username = isset($_COOKIE['username']) ? $_COOKIE['username'] : '';
 
-        if(mysqli_stmt_execute($stmt)){ //execute
-            $result= $conn->query("SELECT * FROM tasks WHERE isDone is FALSE");
-            $tasks = [];
+            //prepare to prevent sql injection
+            $query = "INSERT INTO tasks (dueDate, taskname, taskDesc, username) VALUES (?, ?, ?, ?)";
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_bind_param($stmt, 'ssss', $dueDate, $taskName, $taskDesc, $username);
 
-            while ($row = $result->fetch_assoc()) {
-                $tasks[] = $row;
+            if(mysqli_stmt_execute($stmt)){ //execute
+                $result= $conn->query("SELECT * FROM tasks WHERE isDone is FALSE");
+                $tasks = [];
+
+                while ($row = $result->fetch_assoc()) {
+                    $tasks[] = $row;
+                }
+
+                echo json_encode($tasks); //if successful, return open tasks to update the table
+            } else {
+                echo json_encode(['error' => "Error inserting task: " . $sql->error]);
             }
-
-            echo json_encode($tasks); //if successful, return open tasks to update the table
         } else {
-            echo json_encode(['error' => "Error inserting task: " . $sql->error]);
-        }
+            echo json_encode(['error' => "missing Data"]);
+        }         
     }
 }
 

@@ -46,7 +46,9 @@
                 <button class="w3-quarter w3-button w3-border w3-black" @click="submit">Senden</button>
                 <!--TODO: Zusatztechnik 1: button should only work and respond with errors if username is not filled out and task name is empty-->
             </div>                
-            <p> {{ errorOutput }}</p>
+            <p> {{ errorOutput.dueDate }}</p> 
+            <p> {{ errorOutput.taskName }}</p>
+            <p> {{ errorOutput.addTask }} </p>
         </div>
 
         <!--Cookie Aufgabe-->
@@ -64,6 +66,7 @@
         <!--Ausgabebereich-->
         <div id="output" class="w3-container w3-padding-large">
             <h3>Offene Tasks</h3>
+            <p> {{ errorOutput.getTasks }} </p>
             <table class="w3-table w3-bordered w3-striped w3-hoverable">
                 <!--Tabellen Legende-->
                 <tr>

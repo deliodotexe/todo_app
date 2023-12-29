@@ -5,7 +5,12 @@ var vue = createApp({
     data(){
         return {
             tasks: [],
-            errorOutput: ""
+            errorOutput: {
+                taskName: '',
+                dueDate: '',
+                addTask: '',
+                getTasks: ''
+            }
         }
     },
     methods: {
@@ -44,24 +49,34 @@ var vue = createApp({
             dueDate = document.getElementById('dueDate').value;
             taskName = document.getElementById('taskName').value;
 
+            var isValid = true;
+
+            vue.errorOutput.taskName = '';
+            vue.errorOutput.dueDate = '';
+            vue.errorOutput.addTask = '';
+
             if(taskName.trim() === ""){
-                vue.errorOutput = "Task Name darf nicht leer sein"
-                return;
+                vue.errorOutput.taskName = "Task Name darf nicht leer sein"
+                isValid = false;
             }
 
             if(dueDate.trim() === ""){
-                vue.errorOutput = "End Datum darf nicht leer sein."
+                vue.errorOutput.dueDate = "End Datum darf nicht leer sein."
+                isValid = false;
+            }
+
+            if(isValid === false){
                 return;
             }
 
             //console.log("sending Task")
             let xhr = new XMLHttpRequest();
-            xhr.onerror = function(){vue.errorOutputoutput = "Ein Fehler ist aufgetreten";}
+            xhr.onerror = function(){vue.errorOutput.addTask = "Ein Fehler ist aufgetreten";}
 
-            xhr.ontimeout = function() {vue.errorOutput = "Server brauchte zu lange zum antworten";}
+            xhr.ontimeout = function() {vue.errorOutput.addTask = "Server brauchte zu lange zum antworten";}
 
             xhr.onload = function() {
-                vue.errorOutput = "Erfolg";
+                vue.errorOutput.addTask = "Erfolg";
                 vue.tasks = JSON.parse(xhr.responseText);
             }
 
@@ -87,9 +102,9 @@ var vue = createApp({
             //console.log("finishing Task");
 
             let xhr = new XMLHttpRequest();
-            xhr.onerror = function(){vue.errorOutput = "Ein Fehler ist aufgetreten";}
+            xhr.onerror = function(){vue.errorOutput.getTasks = "Ein Fehler ist aufgetreten";}
 
-            xhr.ontimeout = function() {vue.errorOutput = "Server benötigte zu lange zum antworten";}
+            xhr.ontimeout = function() {vue.errorOutput.getTasks = "Server benötigte zu lange zum antworten";}
 
             xhr.onload = function(){
                 //remove choosen task from list
