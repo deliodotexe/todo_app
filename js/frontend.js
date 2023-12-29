@@ -69,6 +69,22 @@ var vue = createApp({
             xhr.open('POST', 'backend.php', true);
             xhr.setRequestHeader('Content-Type', 'application/json')
             xhr.send(json);
+        },
+        async finishTask(task){
+            console.log("finishing Task");
+
+            let xhr = new XMLHttpRequest();
+            xhr.onerror = function(){vue.errorOutputoutput = "An Error has occured";}
+
+            xhr.ontimeout = function() {vue.errorOutput = "Server took too long to responde (Timeout)";}
+
+            xhr.onload = function(){
+                //remove choosen task from list
+                vue.tasks = vue.tasks.filter((t) => t.taskId !== task.taskId);
+            }
+
+            xhr.open('POST', 'backend.php?finishTask=' + task.taskId, true);
+            xhr.send();
         }
 
     },

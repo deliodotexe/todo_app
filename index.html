@@ -75,7 +75,7 @@
                     <td> {{ task.taskName  }}</td>
                     <td> {{ task.taskDesc  }}</td>
                     <td> {{ task.username  }}</td>
-                    <td><button>Abschliessen</button></td> <!--TODO: Funktionalität-->
+                    <td><button @click="markAsDone(task)">Abschliessen</button></td> <!--TODO: Funktionalität-->
                 </tr>
             </table>
         </div>
