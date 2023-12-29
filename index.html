@@ -25,6 +25,7 @@
                     Dies ist eine simple demo einer Todo-Listen Application. <br>
                     Um einen Task hinzu zufügen, muss mindestens Datum und Name des Tasks ausgefüllt werden.
                     Der Nutzername ist optional und muss nicht ausgefüllt werden. Zum Löschen des Nutzernamen, einfach das Feld leer lassen und absenden.
+                    Über der Task liste wird eine Auslastung in Prozent angezeigt. Diese ist auf 16 Tasks ausgelegt.
 
                     <!--TODO: Anleitung-->
                 </p>
@@ -56,8 +57,7 @@
             <h3>Nutzername Ändern</h3>
             <div class="w3-container w3-row-padding">
                 <div class="w3-threequarter">
-                    <label for="username">Name:</label>
-                    <input type="text" id="username" class="w3-input w3-border">
+                    <input type="text" id="username" class="w3-input w3-border" placeholder="Name">
                 </div>
                 <button class="w3-quarter w3-button w3-border w3-black" @click="saveNameInCookie">Senden</button>
             </div>                
@@ -66,6 +66,9 @@
         <!--Ausgabebereich-->
         <div id="output" class="w3-container w3-padding-large">
             <h3>Offene Tasks</h3>
+            <div class="w3-container">
+                <canvas id="workLoadCanvas"></canvas>
+            </div>
             <p> {{ errorOutput.getTasks }} </p>
             <table class="w3-table w3-bordered w3-striped w3-hoverable">
                 <!--Tabellen Legende-->
