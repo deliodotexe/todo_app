@@ -35,6 +35,10 @@ body > * {
     margin-right: 5px;
 }
 
+#cookieUsername div > label {
+    margin: auto;
+}
+
 #content {
     align-items: center;
 }

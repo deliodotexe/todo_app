@@ -31,13 +31,44 @@ var vue = createApp({
                 }
             }
 
-            xhr.open('GET', 'backend.php?', true);
+            xhr.open('GET', 'backend.php', true);
             xhr.send();
         },
         saveNameInCookie(){
             var username = document.getElementById('username').value;
             document.cookie = 'username=' + encodeURIComponent(username) + '; expires=Fri, 31 Dec 2024 23:59:59 GMT; path=/';
             document.getElementById('username').value = "";
+        },
+        async submit(){
+            //TODO: Validation 
+            console.log("sending Task")
+            let xhr = new XMLHttpRequest();
+            xhr.onerror = function(){vue.errorOutputoutput = "An Error has occured";}
+
+            xhr.ontimeout = function() {vue.errorOutput = "Server took too long to responde (Timeout)";}
+
+            xhr.onload = function() {
+                vue.errorOutput = "Successful";
+                vue.tasks = JSON.parse(xhr.responseText);
+            }
+
+            //create empty json
+            var body = {
+                "dueDate": "",
+                "taskName": "",
+                "taskDesc": ""
+            };
+
+            //fillout json
+            body.dueDate = document.getElementById('dueDate').value;
+            body.taskName = document.getElementById('taskName').value;
+            body.taskDesc = document.getElementById('taskDesc').value;
+
+            let json = JSON.stringify(body);
+
+            xhr.open('POST', 'backend.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json')
+            xhr.send(json);
         }
 
     },

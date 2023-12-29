@@ -40,7 +40,7 @@
                 <input type="text" id="taskName" placeholder="Name" value="" class="w3-input w3-border">
 
                 <input type="text" id="taskDesc" placeholder="Beschreibung" value="" class="w3-input w3-border">
-                <button class="w3-quarter w3-button w3-border">Senden</button> <!--TODO: Funktionalität-->
+                <button class="w3-quarter w3-button w3-border w3-black" @click="submit">Senden</button> <!--TODO: Funktionalität-->
                 <!--TODO: Zusatztechnik 1: button should only work and respond with errors if username is not filled out and task name is empty-->
             </div>                
             <p> {{ errorOutput }}</p>
@@ -54,7 +54,7 @@
                     <label for="username">Name:</label>
                     <input type="text" id="username" class="w3-input w3-border">
                 </div>
-                <button class="w3-quarter w3-button w3-border" @click="saveNameInCookie">Senden</button> <!--TODO: Funktionalität-->
+                <button class="w3-quarter w3-button w3-border w3-black" @click="saveNameInCookie">Senden</button> <!--TODO: Funktionalität-->
             </div>                
         </div>
 
