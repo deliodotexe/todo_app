@@ -49,7 +49,7 @@ var vue = createApp({
                 return;
             }
 
-            if(dueDate === "0000-00-00"){
+            if(dueDate.trim() === ""){
                 vue.errorOutput = "End Datum darf nicht leer sein."
                 return;
             }
