@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //Handling Get request from FetchData
 
     //Zusatztechniken 2: some SQL request to grab data from DB and return it
-    $stmt = mysqli_prepare($conn, "SELECT taskName, taskDesc, dueDate, username FROM tasks WHERE isDone is FALSE ORDER BY dueDate");
+    $stmt = mysqli_prepare($conn, "SELECT taskName, taskDesc, dueDate, username, taskId FROM tasks WHERE isDone is FALSE ORDER BY dueDate");
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
