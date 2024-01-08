@@ -22,12 +22,17 @@
             <h3>Informationen</h3>
             <div class="w3-container">
                 <p class="w3-threequarter">
-                    Dies ist eine simple demo einer Todo-Listen Application. <br>
-                    Um einen Task hinzu zufügen, muss mindestens Datum und Name des Tasks ausgefüllt werden.
-                    Der Nutzername ist optional und muss nicht ausgefüllt werden. Zum Löschen des Nutzernamen, einfach das Feld leer lassen und absenden.
-                    Über der Task liste wird eine Auslastung in Prozent angezeigt. Diese ist auf 16 Tasks ausgelegt.
-
-                    <!--TODO: Anleitung-->
+                    Dies ist eine simple demo einer ToDo-Listen Applikation, welche im Rahmen der MEP für WEBT HS23 entstanden ist. <br>
+                    <br>
+                    Anleitung: <br>
+                    1. Um einen Task hinzuzufügen, muss mindestens das Enddatum und ein Name gesetzt sein. Beschreibung ist optional. <br>
+                    2. (optional) Zusätzlich kann ein Nutzername hinterlegt werden, welcher dann beim Task angezeigt wird.<br>
+                    3. Die offenen Tasks werden unten angezeigt und können mit einem Klick auf "Abschliessen" beendet werden. <br>
+                    3a. Über den offenen Tasks wird eine Auslastungsskala angezeigt, diese bezieht sich auf 16 Aufgaben gleichzeitig.<br>
+                    3b. Die Auslastung kann meiner Meinung nach 100% übersteigen und ist daher nicht auf dieses Limitiert.<br>
+                    <br>
+                    Github: https://github.com/deliodotexe/todo_app <br>
+                    Autor: L. Wernli <br>
                 </p>
                 <img src="img/stickynotes.png" class="w3-quarter">
             </div>
@@ -45,7 +50,6 @@
 
                 <input type="text" id="taskDesc" placeholder="Beschreibung" value="" class="w3-input w3-border">
                 <button class="w3-quarter w3-button w3-border w3-black" @click="submit" :disabled="!isFormValid">Senden</button>
-                <!--TODO: Zusatztechnik 1: button should only work and respond with errors if username is not filled out and task name is empty-->
             </div>                
             <p> {{ errorOutput.dueDate }}</p> 
             <p> {{ errorOutput.taskName }}</p>
